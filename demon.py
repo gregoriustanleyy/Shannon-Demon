@@ -2,6 +2,7 @@ from datetime import datetime
 import yfinance as yf
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 import warnings
 warnings.filterwarnings("ignore")
 #Reference: geeksforgeeks.com
@@ -83,6 +84,11 @@ plt.plot(portfolio_unbalance["Total"], label = "Unbalanced")
 plt.legend()
 plt.savefig("Portfolio.png")
 
+print("\n")
+print("-----")
+print(yf.Ticker(asset).info.get("longName"))
 print("Initial Capital: $1000.0")
+print("Volatility: " + str(data["Close"].std() * np.sqrt(len(data) * 100)) + "%")
 print("Portfolio Unbalanced: $" + str(round(portfolio_unbalance["Total"].iloc[-1], 2)))
 print("Portfolio Rebalanced: $" + str(round(portfolio_rebalance["Total"].iloc[-1], 2)))
+print("-----")
